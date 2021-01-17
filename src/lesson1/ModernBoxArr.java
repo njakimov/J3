@@ -23,6 +23,11 @@ public class ModernBoxArr<T extends Number> {
 
     public double getAverage() {
         double average = 0.0;
+        // обход объекта
+        for (T t : arr) {
+            average += t.doubleValue();
+        }
+        // обход массива
         for (int i = 0; i < arr.length; i++) {
             average += arr[i].doubleValue();
         }
