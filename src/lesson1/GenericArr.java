@@ -1,6 +1,9 @@
 package lesson1;
 
-public class ModernBoxArr<T extends Number> {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class GenericArr<T extends Number> {
     private T[] arr;
 
     // нельзя:
@@ -9,7 +12,7 @@ public class ModernBoxArr<T extends Number> {
     // исключения нельзя (отнаследоваться от исключений)
     // static fields
 
-    public ModernBoxArr(T... arr) {
+    public GenericArr(T... arr) {
         this.arr = arr;
     }
 
@@ -34,7 +37,7 @@ public class ModernBoxArr<T extends Number> {
         return average / arr.length;
     }
 
-    public boolean isAverageEquals(ModernBoxArr<?> box) {
+    public boolean isAverageEquals(GenericArr<?> box) {
         return Math.abs(this.getAverage() - box.getAverage()) < 0.001;
     }
 
@@ -49,5 +52,37 @@ public class ModernBoxArr<T extends Number> {
         System.out.println(f2);
         System.out.println(f1 == f2);
 
+    }
+
+    /**
+     * изменение элементов массива местам
+     *
+     * @param idx1 - индекс места 1
+     * @param idx2 - индекс места 2
+     */
+    public void swap(int idx1, int idx2) {
+        T temp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = temp;
+    }
+
+
+    /**
+     * Преобразование array в arrayList
+     * @return возвращает перобразованный arrayList
+     */
+    public ArrayList toArraList() {
+        ArrayList arrList = new ArrayList();
+        for (int i = 0; i < arr.length; i++) {
+            arrList.add(arr[i]);
+        }
+        return arrList;
+    }
+
+    @Override
+    public String toString() {
+        return "GenericArr{" +
+                "arr=" + Arrays.toString(arr) +
+                '}';
     }
 }

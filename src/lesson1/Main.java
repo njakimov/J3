@@ -17,10 +17,10 @@ public class Main {
         intBox = modernBox1.getObj() + modernBox2.getObj();
         System.out.println(intBox);
 
-        ModernBoxArr<Integer> modernBoxArr1 = new ModernBoxArr<>(1, 2, 2);
-        ModernBoxArr<Double> modernBoxArr2 = new ModernBoxArr<>(1D, 2D, 2D);
+        GenericArr<Integer> genericArr1 = new GenericArr<>(1, 2, 2);
+        GenericArr<Double> genericArr2 = new GenericArr<>(1D, 2D, 2D);
 
-        System.out.println(modernBoxArr1.isAverageEquals(modernBoxArr2));
+        System.out.println(genericArr1.isAverageEquals(genericArr2));
         List<String> string1 = List.of("Alice");
         System.out.println(getElementFromCollection(string1));
         List<String> string = Arrays.asList("Alice", "Bob", "Charlie");
