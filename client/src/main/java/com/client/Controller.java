@@ -14,10 +14,10 @@ public class Controller implements Initializable {
     TextArea textArea;
 
     @FXML
-    TextField msgField, loginField;
+    TextField msgField, loginField, newNickNameField;
 
     @FXML
-    HBox msgPanel, authPanel;
+    HBox msgPanel, authPanel, changeNickNamePanel;
 
     @FXML
     PasswordField passField;
@@ -34,6 +34,8 @@ public class Controller implements Initializable {
         authPanel.setManaged(!authenticated);
         msgPanel.setVisible(authenticated);
         msgPanel.setManaged(authenticated);
+        changeNickNamePanel.setVisible(authenticated);
+        changeNickNamePanel.setManaged(authenticated);
         clientsList.setVisible(authenticated);
         clientsList.setManaged(authenticated);
         if (!authenticated) {
@@ -59,6 +61,13 @@ public class Controller implements Initializable {
         Network.sendAuth(loginField.getText(), passField.getText());
         loginField.clear();
         passField.clear();
+    }
+    public void changeNickName() {
+        System.out.println(newNickNameField.getText());
+        if (Network.sendCheckNickName(newNickNameField.getText())) {
+            newNickNameField.clear();
+            msgField.requestFocus();
+        }
     }
 
     public void sendMsg() {

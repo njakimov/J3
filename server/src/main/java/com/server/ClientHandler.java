@@ -47,6 +47,10 @@ public class ClientHandler {
                             }
                             if(msg.startsWith("/w ")) {
                                 String[] tokens = msg.split("\\s", 3);
+                                server.changeNickName(this, tokens[1], tokens[2]);
+                            }
+                            if(msg.startsWith("/chgNickName ")) {
+                                String[] tokens = msg.split("\\s", 3);
                                 server.privateMsg(this, tokens[1], tokens[2]);
                             }
                         } else {

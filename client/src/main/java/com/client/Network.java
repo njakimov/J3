@@ -50,6 +50,19 @@ public class Network {
         }
     }
 
+    public static boolean sendCheckNickName(String newNickName) {
+        try {
+            if (socket == null || socket.isClosed()) {
+                connect();
+            }
+            out.writeUTF("/chgNickName " + newNickName);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void connect() {
         try {
             socket = new Socket("localhost", 8189);

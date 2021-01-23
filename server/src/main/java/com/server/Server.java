@@ -51,6 +51,21 @@ public class Server {
         sender.sendMsg("Клиент " + receiverNick + " не найден");
     }
 
+    public void changeNickName(ClientHandler sender, String login, String newNickName) {
+//        if (sender.getNickname().equals(receiverNick)) {
+//            sender.sendMsg("заметка для себя: " + msg);
+//            return;
+//        }
+//        for (ClientHandler o : clients) {
+//            if (o.getNickname().equals(receiverNick)) {
+//                o.sendMsg("от " + sender.getNickname() + ": " + msg);
+//                sender.sendMsg("для " + receiverNick + ": " + msg);
+//                return;
+//            }
+//        }
+//        sender.sendMsg("Клиент " + receiverNick + " не найден");
+    }
+
     public void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
         broadcastClientsList();
