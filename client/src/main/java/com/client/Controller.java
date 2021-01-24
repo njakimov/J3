@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.client.JournalChatFile.*;
+
 public class Controller implements Initializable {
     @FXML
     TextArea textArea;
@@ -62,6 +64,7 @@ public class Controller implements Initializable {
         loginField.clear();
         passField.clear();
     }
+
     public void changeNickName() {
         System.out.println(newNickNameField.getText());
         if (Network.sendCheckNickName(newNickNameField.getText())) {
@@ -92,6 +95,7 @@ public class Controller implements Initializable {
         Network.setCallOnAuthenticated(args -> {
             setAuthenticated(true);
             nickname = args[0].toString();
+            textArea.setText(readHistoryMessage(nickname));                                                             // загружаем историю сообщений пользователя
         });
 
         Network.setCallOnMsgReceived(args -> {
@@ -108,6 +112,7 @@ public class Controller implements Initializable {
                 }
             } else {
                 textArea.appendText(msg + "\n");
+                saveHistoryMessage(msg, nickname);                                                                      // сохраняем сообщение пользователя в журнал истории
             }
         });
     }
