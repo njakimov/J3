@@ -6,3 +6,6 @@ USER2: Хьюстон на связи!
 USER1: 1
 USER1: 2
 USER1: 3
+USER1: wqer
+USER2: привет 1
+USER1: привет 2!

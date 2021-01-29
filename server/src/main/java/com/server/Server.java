@@ -4,18 +4,26 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
     private Vector<ClientHandler> clients;
     private AuthService authService;
+    private ExecutorService executorService;
 
     public AuthService getAuthService() {
         return authService;
     }
 
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
+
     public Server() {
         clients = new Vector<>();
         authService = new DbAuthService();
+        executorService = Executors.newCachedThreadPool();
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
             System.out.println("Сервер запущен на порту 8189");
             while (true) {
@@ -27,6 +35,7 @@ public class Server {
             e.printStackTrace();
             DbService.connectionClose();
         }
+        executorService.shutdown();
         System.out.println("Сервер завершил свою работу");
     }
 
