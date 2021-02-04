@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class ClientHandler {
     private String nickname;
@@ -11,6 +12,7 @@ public class ClientHandler {
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
+    private final LogEvent logger = new LogEvent(ClientHandler.class.getName());
 
     public String getNickname() {
         return nickname;
@@ -26,6 +28,7 @@ public class ClientHandler {
                 try {
                     while (true) {
                         String msg = in.readUTF();
+                        this.logger.log(Level.INFO, msg);
                         // /auth login1 pass1
                         if (msg.startsWith("/auth ")) {
                             String[] tokens = msg.split("\\s");
@@ -40,6 +43,7 @@ public class ClientHandler {
                     }
                     while (true) {
                         String msg = in.readUTF();
+                        this.logger.log(Level.INFO, msg);
                         if(msg.startsWith("/")) {
                             if (msg.equals("/end")) {
                                 sendMsg("/end");

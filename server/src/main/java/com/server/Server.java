@@ -6,11 +6,13 @@ import java.net.Socket;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
 
 public class Server {
     private Vector<ClientHandler> clients;
     private AuthService authService;
     private ExecutorService executorService;
+    private final LogEvent logger = new LogEvent(Server.class.getName());
 
     public AuthService getAuthService() {
         return authService;
@@ -25,18 +27,19 @@ public class Server {
         authService = new DbAuthService();
         executorService = Executors.newCachedThreadPool();
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
-            System.out.println("Сервер запущен на порту 8189");
+            this.logger.log(Level.INFO, "Сервер запущен на порту 8189");
             while (true) {
                 Socket socket = serverSocket.accept();
                 new ClientHandler(this, socket);
-                System.out.println("Подключился новый клиент");
+                this.logger.log(Level.INFO, "Подключился новый клиент");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            this.logger.log(Level.SEVERE, e.getMessage());
             DbService.connectionClose();
         }
         executorService.shutdown();
-        System.out.println("Сервер завершил свою работу");
+        this.logger.log(Level.INFO, "Сервер завершил свою работу");
     }
 
     public void broadcastMsg(String msg) {

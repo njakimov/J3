@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 // 1. Добавить в сетевой чат авторизацию через базу данных SQLite.
 // 2.*Добавить в сетевой чат возможность смены ника.
@@ -13,6 +14,7 @@ public class DbAuthService implements AuthService {
         private String password;
         private String nickname;
 
+
         public UserData(String login, String password, String nickname) {
             this.login = login;
             this.password = password;
@@ -21,6 +23,7 @@ public class DbAuthService implements AuthService {
     }
 
     private List<UserData> users;
+    private final LogEvent logger = new LogEvent(DbAuthService.class.getName());
 
     public DbAuthService() {
         this.users = new ArrayList<>();
@@ -40,9 +43,7 @@ public class DbAuthService implements AuthService {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        System.out.println("Не верный логин или пароль");
-        System.out.println("login: " + login);
-        System.out.println("password: " + password);
+        this.logger.log(Level.INFO, "Не верный логин или пароль\nlogin: " + login + " password: " + password);
         return null;
     }
 }
