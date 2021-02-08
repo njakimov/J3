@@ -8,8 +8,8 @@ import lesson7.services.Flyable;
 public class Penguin implements Flyable, Animal {
 
     @Override
-    public void saySmth() {
-        System.out.println("I am a Penguin");
+    public String saySmth() {
+        return "I am a Penguin";
     }
 
     @Override

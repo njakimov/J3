@@ -14,7 +14,11 @@ public class MainExample {
 
     @Autowired
     private Animal animal;
-    
+
+    public MainExample(Flyable flyable, Animal animal) {
+        this.flyable = flyable;
+        this.animal = animal;
+    }
 
     public static void main(String[] args) {
         MainExample instanceObject = Context.getInstanceObject(MainExample.class);
@@ -22,6 +26,7 @@ public class MainExample {
         instanceObject.animal.saySmth();
     }
 
-
-
+    public void sayAnimal() {
+        System.out.println(animal.saySmth());
+    }
 }
