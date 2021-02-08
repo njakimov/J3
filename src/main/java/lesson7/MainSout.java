@@ -13,5 +13,39 @@ package lesson7;
 //      Если это не так – необходимо бросить RuntimeException при запуске «тестирования».
 //  P.S. Это практическое задание – проект, который пишется «с нуля».
 //      Данная задача не связана напрямую с темой тестирования через JUnit
-public class Main {
+public class MainSout {
+
+    public static void main(String[] args) {
+
+    }
+
+    public void getHello() {
+        System.out.println("Привет");
+    }
+
+    public String getMessage1() {
+        System.out.println("Сообщение1");
+        return "Сообщение1";
+    }
+
+    public String getMessage2() {
+        System.out.println("Сообщение2");
+        return "Сообщение2";
+    }
+
+    public String getMessage3() {
+        System.out.println("Сообщение3");
+        return "Сообщение3";
+    }
+
+    public String getMessage4() {
+        System.out.println("Сообщение4");
+        return "Сообщение4";
+    }
+
+    public void getBy() {
+        System.out.println("Пока");
+    }
+
+
 }
